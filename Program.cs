@@ -1,5 +1,4 @@
-﻿// See https://aka.ms/new-console-template for more information
-using System;
+﻿using System;
 
 namespace StopWatch
 {
@@ -43,8 +42,11 @@ namespace StopWatch
 
     public class Program
     {
+       
         static void Main(string[] args)
         {
+           
+           
             int[] numbers = new int[100000];
             Random random = new Random();
             for (int i = 0; i < numbers.Length; i++)
@@ -59,7 +61,26 @@ namespace StopWatch
 
             stopwatch.Stop();
 
-            Console.WriteLine("Selection sort took {0} milliseconds.", stopwatch.GetElapsedTime());
+            static void SelectionSort(int[] arr)
+            {
+                int n = arr.Length;
+                for (int i = 0; i < n - 1; i++)
+                {
+                    int minIndex = i;
+                    for (int j = i + 1; j < n; j++)
+                    {
+                        if (arr[j] < arr[minIndex])
+                        {
+                            minIndex = j;
+                        }
+                    }
+                    int temp = arr[minIndex];
+                    arr[minIndex] = arr[i];
+                    arr[i] = temp;
+                    Console.WriteLine("Swapped {0} with {1}", arr[minIndex], arr[i]);
+
+                }
+            }
 
             Console.WriteLine("Sorted numbers:");
             for (int i = 0; i < numbers.Length; i++)
@@ -67,30 +88,11 @@ namespace StopWatch
                 Console.Write(numbers[i] + " ");
                 if ((i + 1) % 10 == 0)
                 {
-                    Console.WriteLine();
+                    Console.WriteLine("Selection sort took {0} milliseconds.", stopwatch.GetElapsedTime());
                 }
             }
         }
 
-        static void SelectionSort(int[] arr)
-        {
-            int n = arr.Length;
-            for (int i = 0; i < n - 1; i++)
-            {
-                int minIndex = i;
-                for (int j = i + 1; j < n; j++)
-                {
-                    if (arr[j] < arr[minIndex])
-                    {
-                        minIndex = j;
-                    }
-                }
-                int temp = arr[minIndex];
-                arr[minIndex] = arr[i];
-                arr[i] = temp;
-                Console.WriteLine("Swapped {0} with {1}", arr[minIndex], arr[i]);
-
-            }
-        }
+        
     }
 }
